@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+
+    <ExpandableListView
+        android:id="@+id/Listen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="#000000"
+        android:dividerHeight="0.2dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opret Dilemma"
+        android:id="@+id/button2"
+        android:layout_alignBottom="@+id/Listen"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
