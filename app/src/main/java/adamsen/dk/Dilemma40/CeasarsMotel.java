@@ -2,7 +2,6 @@ package adamsen.dk.Dilemma40;
 
 import android.content.Context;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -13,7 +12,6 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,8 +22,9 @@ public class CeasarsMotel {
     ArrayList<Dilemma> Dilemmaer;
     Firebase myFirebaseRef;
     Dilemma tempD;
+    Boolean initialload;
 
-    public CeasarsMotel(Context ctx, final ArrayList Dilemmaer) {
+    public CeasarsMotel(Context ctx, final ArrayList Dilemmaer, Boolean initialload) {
         this.Dilemmaer = Dilemmaer;
 
         Firebase.setAndroidContext(ctx);
@@ -46,9 +45,7 @@ public class CeasarsMotel {
                     HashMap<String,Object> temp =  (HashMap<String,Object>) pair.getValue();
 
                     String titel = (String) temp.get("titel");
-                    System.out.println(titel);
                     String desc = (String) temp.get("desc");
-                    System.out.println(desc);
 
                     ArrayList<String> optionsList = (ArrayList<String>) temp.get("options");
                     String[] optionsArray = new String[optionsList.size()];
@@ -63,7 +60,7 @@ public class CeasarsMotel {
 
                 }
 
-                System.out.println(Dilemmaer.size());
+
 
 
 
@@ -74,7 +71,6 @@ public class CeasarsMotel {
 
             }
         });
-
     }
 
 

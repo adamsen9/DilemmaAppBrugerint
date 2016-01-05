@@ -14,6 +14,7 @@ public class MainActivity extends Activity{
 
     ExpandableListView Exp_list;
     DilemmaAdapter adapter;
+    Boolean initalload = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,14 @@ public class MainActivity extends Activity{
 
 
         //Spash screen slut
-        CeasarsMotel database = new CeasarsMotel(this, Dilemmaer);
+        CeasarsMotel database = new CeasarsMotel(this, Dilemmaer,initalload);
 
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         super.onCreate(savedInstanceState);
