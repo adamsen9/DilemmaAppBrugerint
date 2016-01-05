@@ -17,7 +17,9 @@ public class MainActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Test");
+        Dilemmaer = new ArrayList<>();
+
+
         //Splash screen start
 
 
@@ -25,13 +27,12 @@ public class MainActivity extends Activity{
         CeasarsMotel database = new CeasarsMotel(this, Dilemmaer);
 
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
         Exp_list = (ExpandableListView) findViewById(R.id.Listen);
-        Dilemmaer = DataProvider.getInfo();
-
 
         //Eksempel på stemme afgivet
 

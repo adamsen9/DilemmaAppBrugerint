@@ -9,13 +9,20 @@ public class Dilemma {
     String desc;
 
     String[] options;
-    int[] votes;
+    Integer[] votes;
 
     public Dilemma(String titel, String desc, String[] options) {
         this.titel = titel;
         this.desc = desc;
         this.options = options;
-        votes = new int[options.length];
+        votes = new Integer[options.length];
+    }
+
+    public Dilemma(String titel, String desc, String[] options, Integer[] votes) {
+        this.titel = titel;
+        this.desc = desc;
+        this.options = options;
+        this.votes = votes;
     }
 
     public Dilemma(Dilemma clone) {
@@ -25,8 +32,6 @@ public class Dilemma {
     public Dilemma() {
 
     }
-
-
 
     public String getTitel() {
         return titel;
@@ -64,7 +69,7 @@ public class Dilemma {
         votes[pos]++;
     }
 
-    public int[] getVotes(){
+    public Integer[] getVotes(){
         return votes;
     }
 }
