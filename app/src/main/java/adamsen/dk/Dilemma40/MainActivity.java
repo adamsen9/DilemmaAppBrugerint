@@ -25,14 +25,8 @@ public class MainActivity extends Activity{
 
 
         //Spash screen slut
-        CeasarsMotel database = new CeasarsMotel(this, Dilemmaer,initalload);
-
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        adapter = new DilemmaAdapter(this, Dilemmaer);
+        CeasarsMotel database = new CeasarsMotel(this, Dilemmaer,adapter);
 
 
         super.onCreate(savedInstanceState);
@@ -46,8 +40,11 @@ public class MainActivity extends Activity{
 
 
         ArrayList<Dilemma> dilemmaer = new ArrayList<Dilemma>();
-        adapter = new DilemmaAdapter(this, Dilemmaer);
+
         Exp_list.setAdapter(adapter);
+
+        adapter.notifyDataSetChanged();
+
     }
 
 }

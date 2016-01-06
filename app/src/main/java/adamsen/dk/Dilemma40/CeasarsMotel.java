@@ -2,17 +2,13 @@ package adamsen.dk.Dilemma40;
 
 import android.content.Context;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.MutableData;
 import com.firebase.client.Transaction;
-import com.firebase.client.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by Frederik on 1/4/2016.
@@ -21,48 +17,49 @@ public class CeasarsMotel {
 
     ArrayList<Dilemma> Dilemmaer;
     Firebase myFirebaseRef;
-    Dilemma tempD;
-    Boolean initialload;
+    DilemmaAdapter adapter;
 
-    public CeasarsMotel(Context ctx, final ArrayList Dilemmaer, Boolean initialload) {
+    public CeasarsMotel(Context ctx, final ArrayList Dilemmaer, final DilemmaAdapter adapter) {
         this.Dilemmaer = Dilemmaer;
+        this.adapter = adapter;
 
         Firebase.setAndroidContext(ctx);
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
 
 
         //Indledende indlæsning af dilemmaer!
-        myFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        //Indlæsning af nyt oprettet dilemma fra databasen
+        myFirebaseRef.addChildEventListener(new ChildEventListener() {
+            //Indledende indlæsning af dilemmaer og efterfølgende tilføjelser af nye
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Map<String, Dilemma> newList = (Map<String, Dilemma>) dataSnapshot.getValue();
-                Iterator it = newList.entrySet().iterator();
-
-                while(it.hasNext()) {
-                    Map.Entry pair = (Map.Entry)it.next();
-
-                    HashMap<String,Object> temp =  (HashMap<String,Object>) pair.getValue();
-
-                    String titel = (String) temp.get("titel");
-                    String desc = (String) temp.get("desc");
-
-                    ArrayList<String> optionsList = (ArrayList<String>) temp.get("options");
-                    String[] optionsArray = new String[optionsList.size()];
-                    optionsArray = optionsList.toArray(optionsArray);
-
-
-
-                    tempD = new Dilemma(titel,desc,optionsArray);
-                    tempD.setId((String) pair.getKey());
-
-                    Dilemmaer.add(tempD);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                try {
+                    Dilemmaer.add(dataSnapshot.getValue(Dilemma.class));
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
 
                 }
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+            }
 
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //Todo: implementer at et dilemma bliver fjerne, for testforsøg
+                try {
+                    Dilemmaer.remove(dataSnapshot.getValue(Dilemma.class));
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
 
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -71,15 +68,18 @@ public class CeasarsMotel {
 
             }
         });
+
     }
 
 
-    //Nyt dilemma
+    //Oprettelse af nyt dilemma
     public void newDilemmaDatabase(Dilemma d) {
-        myFirebaseRef.push().setValue(d);
+        myFirebaseRef.setValue(d);
+        d.setId(myFirebaseRef.getKey());
+        //Push data skal bruges til at sætte ID for dilemma
     }
 
-    //Opdatering af stemmer
+    // Todo: Implementer opdatering af stemmer
     public void opdaterStemmer(Dilemma d) {
 
         Firebase stemme = new Firebase("https://dilemmaapp.firebaseio.com/" + d.getId());
