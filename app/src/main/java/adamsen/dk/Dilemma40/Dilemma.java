@@ -4,16 +4,33 @@ package adamsen.dk.Dilemma40;
  */
 
 public class Dilemma {
+    String id;
     String titel;
     String desc;
 
     String[] options;
-    int[] votes;
+    Integer[] votes;
 
     public Dilemma(String titel, String desc, String[] options) {
         this.titel = titel;
         this.desc = desc;
         this.options = options;
+        votes = new Integer[options.length];
+    }
+
+    public Dilemma(String titel, String desc, String[] options, Integer[] votes) {
+        this.titel = titel;
+        this.desc = desc;
+        this.options = options;
+        this.votes = votes;
+    }
+
+    public Dilemma(Dilemma clone) {
+
+    }
+
+    public Dilemma() {
+
     }
 
     public String getTitel() {
@@ -40,4 +57,19 @@ public class Dilemma {
         this.options = options;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void addVotes(int pos) {
+        votes[pos]++;
+    }
+
+    public Integer[] getVotes(){
+        return votes;
+    }
 }
