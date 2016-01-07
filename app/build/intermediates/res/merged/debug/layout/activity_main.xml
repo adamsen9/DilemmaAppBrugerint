@@ -8,6 +8,21 @@
     android:paddingTop="0dp"
     android:paddingBottom="0dp">
 
+    <ExpandableListView
+        android:id="@+id/Listen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="#000000"
+        android:dividerHeight="0.2dp"
+        android:elevation="5dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/button2" />
+
     <android.support.v7.widget.Toolbar
         android:text="Dilemma App"
         android:textColor="#ecf0f1"
@@ -17,24 +32,10 @@
         android:background="#d35400"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
         android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
-        android:layout_alignEnd="@+id/button2" />
-
-
-
-    <ExpandableListView
-        android:id="@+id/Listen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-        android:divider="#000000"
-        android:dividerHeight="0.2dp"
-        android:elevation="5dp"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp" />
 
     <Button
         android:layout_width="wrap_content"
