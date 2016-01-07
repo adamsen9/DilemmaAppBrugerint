@@ -16,6 +16,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +32,15 @@ public class Create extends Activity {
     Button ok;
     Dilemma dilemma;
     final List<String> dilemma_inner = new ArrayList<String>();
+    static Firebase myFirebaseRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_layout);
+        myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
+
         title = (EditText) findViewById(R.id.editText_titel);
         info = (EditText) findViewById(R.id.editText_beskrivelse);
         textIn = (EditText)findViewById(R.id.textin);
@@ -85,7 +91,9 @@ public class Create extends Activity {
                     toast4.show();
                     String[] arr = dilemma_inner.toArray(new String[dilemma_inner.size()]);
                     dilemma = new Dilemma(title.getText().toString(), info.getText().toString(), arr);
+                    newDilemmaDatabase(dilemma);
                     finish();
+
                 }
             }
         });
@@ -124,5 +132,9 @@ public class Create extends Activity {
         }
         Toast toast5 = Toast.makeText(getApplicationContext(), "kinda fail", Toast.LENGTH_SHORT);
         toast5.show();
+    }
+
+    public static void newDilemmaDatabase(Dilemma d) {
+        myFirebaseRef.push().setValue(d);
     }
 }
