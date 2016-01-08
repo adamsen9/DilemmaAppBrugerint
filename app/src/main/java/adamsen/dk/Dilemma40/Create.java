@@ -3,12 +3,14 @@ package adamsen.dk.Dilemma40;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -45,9 +47,12 @@ public class Create extends Activity {
         info = (EditText) findViewById(R.id.editText_beskrivelse);
         textIn = (EditText)findViewById(R.id.textin);
         buttonAdd = (Button)findViewById(R.id.add);
+
+        ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(backHandler);
+
         container = (LinearLayout)findViewById(R.id.container);
         ok = (Button) findViewById(R.id.button_ok);
-
         buttonAdd.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -98,6 +103,13 @@ public class Create extends Activity {
             }
         });
     }
+
+    View.OnClickListener backHandler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onBackPressed();
+        }
+    };
 
     public boolean isEmpty(){
         if(title.getText().toString().isEmpty()) return false;

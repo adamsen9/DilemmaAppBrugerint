@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
         android:textColor="#000000"
-        android:paddingBottom="2dp"/>
+        android:paddingBottom="2dp"
+        android:textSize="16sp" />
     
     <RadioGroup
         android:id="@+id/dilemma_valgmuligheder"
@@ -19,11 +20,6 @@
         android:layout_height="wrap_content">
 
     </RadioGroup>
-
-    <Button
-        android:id="@+id/stem"
-        android:layout_width="50dp"
-        android:layout_height="10dp" />
 
     <Button
         android:layout_width="wrap_content"

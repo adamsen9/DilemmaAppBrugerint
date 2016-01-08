@@ -32,6 +32,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name="adamsen.dk.Dilemma40.Splash" >
+            android:label="@string/app_name"
+            <intent-filter>
+                <action android:name="adamsen.dk.Dilemma40.Splash" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

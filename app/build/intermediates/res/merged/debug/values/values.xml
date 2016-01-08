@@ -305,7 +305,7 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="app_name">BlankProjekt</string>
+    <string name="app_name">Dilemma App Gruppe 40</string>
     <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>

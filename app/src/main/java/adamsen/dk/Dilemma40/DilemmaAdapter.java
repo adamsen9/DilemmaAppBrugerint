@@ -122,7 +122,6 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         //Toast
         String message = ((Dilemma) getChild(parent, child)).getTitel();
 
-        Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show();
 
         //Return
         return convertView;
