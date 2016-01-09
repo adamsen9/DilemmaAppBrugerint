@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -17,8 +18,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     ExpandableListView Exp_list;
     DilemmaAdapter adapter;
-    Button create;
+    FloatingActionButton create;
     Datalag database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         database = new Datalag(this, Dilemmaer, adapter);
         Exp_list = (ExpandableListView) findViewById(R.id.Listen);
         Exp_list.setAdapter(adapter);
-        create = (Button) findViewById(R.id.button2);
+        create = (FloatingActionButton) findViewById(R.id.button2);
         create.setOnClickListener(this);
+
 
     }
 

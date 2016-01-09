@@ -34,9 +34,9 @@
     <color name="button_material_light">#ffd6d7d7</color>
     <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#D35400</color>
+    <color name="colorPrimary">#843500</color>
+    <color name="colorPrimaryDark">#622700</color>
     <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <color name="design_fab_shadow_end_color">@android:color/transparent</color>
@@ -329,6 +329,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
     <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>

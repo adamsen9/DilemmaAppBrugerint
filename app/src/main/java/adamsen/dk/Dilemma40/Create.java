@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,11 +28,11 @@ import java.util.List;
 public class Create extends Activity {
 
     EditText textIn;
-    Button buttonAdd;
+    FloatingActionButton buttonAdd;
     LinearLayout container;
     EditText title;
     EditText info;
-    Button ok;
+    FloatingActionButton ok;
     Dilemma dilemma;
     final List<String> dilemma_inner = new ArrayList<String>();
     static Firebase myFirebaseRef;
@@ -46,13 +47,13 @@ public class Create extends Activity {
         title = (EditText) findViewById(R.id.editText_titel);
         info = (EditText) findViewById(R.id.editText_beskrivelse);
         textIn = (EditText)findViewById(R.id.textin);
-        buttonAdd = (Button)findViewById(R.id.add);
+        buttonAdd = (FloatingActionButton)findViewById(R.id.add);
 
         ImageButton backButton = (ImageButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(backHandler);
 
         container = (LinearLayout)findViewById(R.id.container);
-        ok = (Button) findViewById(R.id.button_ok);
+        ok = (FloatingActionButton) findViewById(R.id.button_ok);
         buttonAdd.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -68,7 +69,7 @@ public class Create extends Activity {
 
                 dilemma_inner.add(textOut.getText().toString());
                 textIn.setText("");
-                Button buttonRemove = (Button) addView.findViewById(R.id.remove);
+                ImageButton buttonRemove = (ImageButton) addView.findViewById(R.id.remove);
                 buttonRemove.setOnClickListener(new OnClickListener(){
                     @Override
                     public void onClick(View v) {
