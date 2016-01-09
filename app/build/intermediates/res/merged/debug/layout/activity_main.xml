@@ -1,49 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="0dp">
-
-    <android.support.v7.widget.Toolbar
-        android:text="@string/app_name"
-        android:color="#ffffff"
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#27ae60"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/button2" />
 
 
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ExpandableListView
-        android:id="@+id/Listen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-        android:divider="#000000"
-        android:dividerHeight="0.2dp"
-        android:elevation="5dp"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp" />
 
-    <Button
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="0dip">
+
+
+        <android.support.v7.widget.Toolbar
+            android:textColor="#ecf0f1"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#d35400"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+
+
+                android:layout_marginLeft="16dp"
+                android:text="Dilemma App"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <ExpandableListView
+            android:id="@+id/Listen"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:divider="#000000"
+            android:dividerHeight="0.2dp"
+
+            android:elevation="5dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/button2"
+            android:layout_below="@+id/my_toolbar"
+            android:layout_alignEnd="@+id/button2"
+
+            android:layout_weight="0.60" />
+
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Opret Dilemma"
+        android:src="@drawable/ic_add_white_24dp"
         android:id="@+id/button2"
-        android:layout_alignBottom="@+id/Listen"
-        android:layout_alignParentEnd="true" />
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        app:layout_anchorGravity="bottom|right|end"
+        android:elevation="6dp"
+        />
+
+</android.support.design.widget.CoordinatorLayout>
 
 
-</RelativeLayout>
 <!-- From: file:/E:/AndroidProjekter/DilemmaAppBrugerint/app/src/main/res/layout/activity_main.xml -->

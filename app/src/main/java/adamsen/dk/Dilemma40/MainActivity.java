@@ -1,41 +1,52 @@
 package adamsen.dk.Dilemma40;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.Toolbar;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.logging.Handler;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity implements View.OnClickListener {
     ArrayList <Dilemma> Dilemmaer;
 
     ExpandableListView Exp_list;
     DilemmaAdapter adapter;
+    FloatingActionButton create;
+    Datalag database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Splash screen start
-
-
-        //Spash screen slut
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        Exp_list = (ExpandableListView) findViewById(R.id.Listen);
-        Dilemmaer = DataProvider.getInfo();
-
-
-        ArrayList<Dilemma> dilemmaer = new ArrayList<Dilemma>();
+        Dilemmaer = new ArrayList<>();
         adapter = new DilemmaAdapter(this, Dilemmaer);
+        database = new Datalag(this, Dilemmaer, adapter);
+        Exp_list = (ExpandableListView) findViewById(R.id.Listen);
         Exp_list.setAdapter(adapter);
+        create = (FloatingActionButton) findViewById(R.id.button2);
+        create.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==create){
+            createClick();
+        }
+    }
+
+    private void createClick() {
+        //create.setText("hello");
+        startActivity(new Intent("adamsen.dk.Dilemma40.Create"));
     }
 
 }

@@ -87,7 +87,6 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
             convertView = inflator.inflate(R.layout.parent_layout,parentView,false);
         }
         TextView parent_textview = (TextView) convertView.findViewById(R.id.parent_txt);
-        parent_textview.setTypeface(null, Typeface.BOLD);
         parent_textview.setText(group_title);
         return convertView;
     }
@@ -122,7 +121,6 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         //Toast
         String message = ((Dilemma) getChild(parent, child)).getTitel();
 
-        Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show();
 
         //Return
         return convertView;
