@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private Context ctx;
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
+    RadioGroup rg;
 
     public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
 
@@ -108,7 +110,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         //Valgmuligheder indlæses
         options = new ArrayList<String>(Arrays.asList(((Dilemma) getChild(parent, child)).getOptions()));
 
-        RadioGroup rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
+        rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
         RadioButton button;
         for(String s : options) {
 
@@ -117,6 +119,15 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
             rg.addView(button);
         }
 
+        Button vote = (Button) convertView.findViewById(R.id.button);
+        final View finalConvertView = convertView;
+        vote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeMessage(rg, finalConvertView);
+            }
+        });
+
 
         //Toast
         String message = ((Dilemma) getChild(parent, child)).getTitel();
@@ -124,6 +135,13 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
 
         //Return
         return convertView;
+    }
+
+    private void makeMessage(RadioGroup rg, View convertView) {
+        int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
+        Toast toast1 = Toast.makeText(ctx, index+"", Toast.LENGTH_SHORT);
+        toast1.show();
+
     }
 
     @Override
