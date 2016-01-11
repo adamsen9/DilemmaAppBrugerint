@@ -2198,12 +2198,14 @@ containing a value of this type.
         public static final int design_snackbar_background=0x7f020046;
         public static final int ic_add_circle_outline_white_24dp=0x7f020047;
         public static final int ic_add_white_24dp=0x7f020048;
-        public static final int ic_arrow_back_white_48dp=0x7f020049;
-        public static final int ic_clear_white_24dp=0x7f02004a;
-        public static final int ic_done_all_white_24dp=0x7f02004b;
-        public static final int ic_done_white_24dp=0x7f02004c;
-        public static final int notification_template_icon_bg=0x7f02004e;
-        public static final int onscvsh=0x7f02004d;
+        public static final int ic_arrow_back_black_18dp=0x7f020049;
+        public static final int ic_arrow_back_white_48dp=0x7f02004a;
+        public static final int ic_clear_white_24dp=0x7f02004b;
+        public static final int ic_done_all_white_24dp=0x7f02004c;
+        public static final int ic_done_white_24dp=0x7f02004d;
+        public static final int notification_template_icon_bg=0x7f020050;
+        public static final int onscvsh=0x7f02004e;
+        public static final int splash=0x7f02004f;
     }
     public static final class id {
         public static final int Listen=0x7f0c006b;

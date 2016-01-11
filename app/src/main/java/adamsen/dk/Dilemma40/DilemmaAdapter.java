@@ -1,7 +1,6 @@
 package adamsen.dk.Dilemma40;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -116,7 +113,6 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
             button.setText(s);
             rg.addView(button);
         }
-
 
         //Toast
         String message = ((Dilemma) getChild(parent, child)).getTitel();

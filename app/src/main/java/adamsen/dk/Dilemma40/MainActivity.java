@@ -3,15 +3,12 @@ package adamsen.dk.Dilemma40;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     ArrayList <Dilemma> Dilemmaer;
@@ -46,7 +43,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void createClick() {
         //create.setText("hello");
-        startActivity(new Intent("adamsen.dk.Dilemma40.Create"));
+        startActivityForResult(new Intent("adamsen.dk.Dilemma40.Create"),1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                Snackbar.make(findViewById(android.R.id.content), "Dilemma oprettet", Snackbar.LENGTH_LONG)
+                    .show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Not implemented
+            }
+        }
     }
 
 }
