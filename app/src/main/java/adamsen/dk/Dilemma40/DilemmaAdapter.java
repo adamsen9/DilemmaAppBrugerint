@@ -20,13 +20,22 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private Context ctx;
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
+    ArrayList<ArrayList<Integer>> check_states = new ArrayList<ArrayList<Integer>>();
+
 
     public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
 
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
+    }
 
-
+    public void setChildrenAndValues(Dilemma d){
+        ArrayList<Integer> tmp = new ArrayList<Integer>();
+        for(String s : d.getOptions()) {
+            System.out.println("Dingeling");
+            tmp.add(0);
+            }
+        check_states.add(tmp);
     }
 
     @Override
@@ -89,13 +98,15 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int parent, int child, boolean isLastChild, View convertView, ViewGroup parentView) {
+    public View getChildView(final int parent, final int child, boolean isLastChild, View convertView, ViewGroup parentView) {
 
         //Beskrivelse hentes
         String dilemma_desc = ((Dilemma) getChild(parent, child)).getDesc();
 
-        LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+
+
+        LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflator.inflate(R.layout.child_layout,parentView,false);
 
         TextView child_textview = (TextView) convertView.findViewById(R.id.dilemma_txt);
@@ -105,17 +116,38 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         //Valgmuligheder indlæses
         options = new ArrayList<String>(Arrays.asList(((Dilemma) getChild(parent, child)).getOptions()));
 
-        RadioGroup rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
-        RadioButton button;
-        for(String s : options) {
+        final RadioGroup rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
 
+        RadioButton button;
+
+        for(String s : options) {
             button = new RadioButton(ctx);
             button.setText(s);
             rg.addView(button);
         }
+        System.out.println(parent);
+        System.out.println(child);
 
-        //Toast
-        String message = ((Dilemma) getChild(parent, child)).getTitel();
+
+        if(check_states.get(parent).get(child) == 1) {
+
+        } else
+            rg.clearCheck();
+
+        final View finalConvertView = convertView;
+        rg.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                System.out.println("Ding ");
+                int index = rg.indexOfChild(finalConvertView.findViewById(rg.getCheckedRadioButtonId()));
+
+                check_states.get(parent).set(child, 1);
+
+                rg.clearCheck();
+
+
+            }
+        });
 
 
         //Return
@@ -126,4 +158,11 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
+
+    @Override
+    public void onGroupCollapsed(int groupPosition) {
+        System.out.println("Kollapse!");
+    }
+
 }

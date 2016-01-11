@@ -35,8 +35,14 @@ public class Datalag {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 try {
-                    Dilemmaer.add(dataSnapshot.getValue(Dilemma.class));
+                    Dilemma d = dataSnapshot.getValue(Dilemma.class);
+                    Dilemmaer.add(d);
+                    adapter.setChildrenAndValues(d);
+
                     adapter.notifyDataSetChanged();
+
+
+
                 } catch (Exception e) {
 
                 }

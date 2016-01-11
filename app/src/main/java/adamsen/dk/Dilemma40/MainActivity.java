@@ -25,6 +25,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         Dilemmaer = new ArrayList<>();
         adapter = new DilemmaAdapter(this, Dilemmaer);
+
         database = new Datalag(this, Dilemmaer, adapter);
         Exp_list = (ExpandableListView) findViewById(R.id.Listen);
         Exp_list.setAdapter(adapter);
@@ -51,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 Snackbar.make(findViewById(android.R.id.content), "Dilemma oprettet", Snackbar.LENGTH_LONG)
-                    .show();
+                        .show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Not implemented
