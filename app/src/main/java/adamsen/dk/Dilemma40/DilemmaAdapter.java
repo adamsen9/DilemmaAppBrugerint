@@ -1,6 +1,7 @@
 package adamsen.dk.Dilemma40;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,22 +21,12 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private Context ctx;
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
-    ArrayList<ArrayList<Integer>> check_states = new ArrayList<ArrayList<Integer>>();
 
 
     public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
 
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
-    }
-
-    public void setChildrenAndValues(Dilemma d){
-        ArrayList<Integer> tmp = new ArrayList<Integer>();
-        for(String s : d.getOptions()) {
-            System.out.println("Dingeling");
-            tmp.add(0);
-            }
-        check_states.add(tmp);
     }
 
     @Override
@@ -86,13 +77,13 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int parent, boolean isExpanded, View convertView, ViewGroup parentView) {
 
-        String group_title = Dilemmaer.get(parent).getTitel();
-
         if(convertView == null) {
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflator.inflate(R.layout.parent_layout,parentView,false);
         }
+
         TextView parent_textview = (TextView) convertView.findViewById(R.id.parent_txt);
+        String group_title = Dilemmaer.get(parent).getTitel();
         parent_textview.setText(group_title);
         return convertView;
     }
@@ -116,38 +107,18 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         //Valgmuligheder indlæses
         options = new ArrayList<String>(Arrays.asList(((Dilemma) getChild(parent, child)).getOptions()));
 
+
+
         final RadioGroup rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
-
         RadioButton button;
-
         for(String s : options) {
             button = new RadioButton(ctx);
             button.setText(s);
             rg.addView(button);
         }
-        System.out.println(parent);
-        System.out.println(child);
 
 
-        if(check_states.get(parent).get(child) == 1) {
 
-        } else
-            rg.clearCheck();
-
-        final View finalConvertView = convertView;
-        rg.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                System.out.println("Ding ");
-                int index = rg.indexOfChild(finalConvertView.findViewById(rg.getCheckedRadioButtonId()));
-
-                check_states.get(parent).set(child, 1);
-
-                rg.clearCheck();
-
-
-            }
-        });
 
 
         //Return
