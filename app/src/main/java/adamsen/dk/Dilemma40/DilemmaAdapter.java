@@ -26,6 +26,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     ArrayList<String> options;
     RadioGroup rg;
 
+
     public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
 
         this.ctx = ctx;
@@ -94,7 +95,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int parent, int child, boolean isLastChild, View convertView, ViewGroup parentView) {
+    public View getChildView(final int parent, int child, boolean isLastChild, View convertView, ViewGroup parentView) {
 
         //Beskrivelse hentes
         String dilemma_desc = ((Dilemma) getChild(parent, child)).getDesc();
@@ -105,6 +106,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
 
         TextView child_textview = (TextView) convertView.findViewById(R.id.dilemma_txt);
         child_textview.setText(dilemma_desc);
+
 
 
         //Valgmuligheder indlæses
@@ -124,7 +126,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeMessage(rg, finalConvertView);
+                makeMessage(rg, finalConvertView, parent);
             }
         });
 
@@ -137,11 +139,14 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    private void makeMessage(RadioGroup rg, View convertView) {
+    private void makeMessage(RadioGroup rg, View convertView, int parent) {
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
-        Toast toast1 = Toast.makeText(ctx, index+"", Toast.LENGTH_SHORT);
-        toast1.show();
-
+        Dilemmaer.get(parent).addVotes(index);
+        for (int i = 0; i < rg .getChildCount(); i++) {
+            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i]+"");
+        }
+        Button vote = (Button) convertView.findViewById(R.id.button);
+        vote.setVisibility(View.GONE);
     }
 
     @Override
