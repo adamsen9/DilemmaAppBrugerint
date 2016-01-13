@@ -1,15 +1,18 @@
 package adamsen.dk.Dilemma40;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,12 +24,15 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private Context ctx;
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
+    RadioGroup rg;
 
 
     public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
 
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
+
+
     }
 
     @Override
@@ -77,63 +83,74 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int parent, boolean isExpanded, View convertView, ViewGroup parentView) {
 
+        String group_title = Dilemmaer.get(parent).getTitel();
+
         if(convertView == null) {
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflator.inflate(R.layout.parent_layout,parentView,false);
         }
-
         TextView parent_textview = (TextView) convertView.findViewById(R.id.parent_txt);
-        String group_title = Dilemmaer.get(parent).getTitel();
         parent_textview.setText(group_title);
         return convertView;
     }
 
     @Override
-    public View getChildView(final int parent, final int child, boolean isLastChild, View convertView, ViewGroup parentView) {
+    public View getChildView(final int parent, int child, boolean isLastChild, View convertView, ViewGroup parentView) {
 
         //Beskrivelse hentes
         String dilemma_desc = ((Dilemma) getChild(parent, child)).getDesc();
 
-
-
-
         LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         convertView = inflator.inflate(R.layout.child_layout,parentView,false);
 
         TextView child_textview = (TextView) convertView.findViewById(R.id.dilemma_txt);
         child_textview.setText(dilemma_desc);
 
 
+
         //Valgmuligheder indlæses
         options = new ArrayList<String>(Arrays.asList(((Dilemma) getChild(parent, child)).getOptions()));
 
-
-
-        final RadioGroup rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
+        rg = (RadioGroup) convertView.findViewById(R.id.dilemma_valgmuligheder);
         RadioButton button;
         for(String s : options) {
+
             button = new RadioButton(ctx);
             button.setText(s);
             rg.addView(button);
         }
 
+        Button vote = (Button) convertView.findViewById(R.id.button);
+        final View finalConvertView = convertView;
+        vote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeMessage(rg, finalConvertView, parent);
+            }
+        });
 
 
+        //Toast
+        String message = ((Dilemma) getChild(parent, child)).getTitel();
 
 
         //Return
         return convertView;
     }
 
+    private void makeMessage(RadioGroup rg, View convertView, int parent) {
+        int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
+        Dilemmaer.get(parent).addVotes(index);
+        for (int i = 0; i < rg .getChildCount(); i++) {
+            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i]+"");
+        }
+        Button vote = (Button) convertView.findViewById(R.id.button);
+        vote.setVisibility(View.GONE);
+    }
+
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
-
-
-    @Override
-    public void onGroupCollapsed(int groupPosition) {
-        System.out.println("Kollapse!");
-    }
-
 }
