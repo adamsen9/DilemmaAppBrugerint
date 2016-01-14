@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -20,20 +22,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Firebase.setAndroidContext(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Dilemmaer = new ArrayList<>();
 
+
         adapter = new DilemmaAdapter(this, Dilemmaer,DTC);
         DTC = new DatalagController(this,Dilemmaer,adapter);
+        adapter.setDTC(DTC);
 
         Exp_list = (ExpandableListView) findViewById(R.id.Listen);
         Exp_list.setAdapter(adapter);
         create = (FloatingActionButton) findViewById(R.id.button2);
         create.setOnClickListener(this);
-
-        DatalagController DTC = new DatalagController(this,Dilemmaer,adapter);
-
     }
 
     @Override
@@ -46,9 +49,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void createClick() {
         //create.setText("hello");
         Intent i = new Intent("adamsen.dk.Dilemma40.Create");
-        i.putExtra("DTC",DTC);
-
-        startActivityForResult(i,1);
+        i.putExtra("DatalagController",DTC);
+        startActivityForResult(i, 1);
     }
 
     @Override

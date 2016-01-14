@@ -20,18 +20,17 @@ public class DatalagController implements Serializable {
 
 
     public DatalagController(Context ctx,ArrayList<Dilemma> Dilemmaer,DilemmaAdapter dilemmaAdapter) {
+        myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
+
         this.dilemmaAdapter = dilemmaAdapter;
         this.ctx = ctx;
 
-        myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
-
         dlTmp = Dilemmaer;
         dataLag = new Datalag(ctx,Dilemmaer,this);
-
     }
 
     public void nytDilemmaIDatabase(Dilemma d) {
-        myFirebaseRef.push().setValue(d);
+        dataLag.nytDilemmaIDatabase(d);
     }
 
     public void opdaterAdapter() {

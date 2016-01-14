@@ -155,7 +155,11 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     }
 
     public void afgivSteme(Dilemma d, int stemmeNr) {
-        DTC.afgivStemme(d,stemmeNr);
+        DTC.afgivStemme(d, stemmeNr);
 
+    }
+
+    public void setDTC(DatalagController DTC) {
+        this.DTC = DTC;
     }
 }

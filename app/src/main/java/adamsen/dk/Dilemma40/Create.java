@@ -40,8 +40,7 @@ public class Create extends Activity {
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
 
         //Indlæsning af DTC
-        Intent i = getIntent();
-        DTC = (DatalagController)i.getSerializableExtra("DTC");
+        DTC = (DatalagController) getIntent().getSerializableExtra("DatalagController");
 
 
         title = (EditText) findViewById(R.id.editText_titel);
@@ -96,7 +95,7 @@ public class Create extends Activity {
                     //Toast toast4 = Toast.makeText(getApplicationContext(), "Dilemmaet er lavet", Toast.LENGTH_SHORT);
                     //toast4.show();
                     String[] arr = dilemma_inner.toArray(new String[dilemma_inner.size()]);
-                    
+
                     dilemma = new Dilemma(title.getText().toString(), info.getText().toString(), arr);
 
                     newDilemmaDatabase(dilemma);

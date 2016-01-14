@@ -28,8 +28,6 @@ public class Datalag {
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
 
 
-        //Indledende indlæsning af dilemmaer!
-
         //Indlæsning af nyt oprettet dilemma fra databasen
         myFirebaseRef.addChildEventListener(new ChildEventListener() {
             //Indledende indlæsning af dilemmaer og efterfølgende tilføjelser af nye
@@ -43,8 +41,6 @@ public class Datalag {
 
                     DTC.opdaterAdapter();
 
-
-
                 } catch (Exception e) {
 
                 }
@@ -57,7 +53,6 @@ public class Datalag {
                 tmp = dataSnapshot.getValue(Dilemma.class);
                 tmp.setId(dataSnapshot.getKey());
 
-
                 for(Dilemma d : Dilemmaer) {
                     if(d.getId().equals(tmp.getId())) {
                         for(int i = 0; i < d.getVotes().length; i++) {
@@ -67,8 +62,6 @@ public class Datalag {
                         }
                     }
                 }
-
-
             }
 
             @Override
@@ -103,5 +96,9 @@ public class Datalag {
                 //This method will be called once with the results of the transaction
             }
         });
+    }
+
+    public void nytDilemmaIDatabase(Dilemma d) {
+        myFirebaseRef.push().setValue(d);
     }
 }
