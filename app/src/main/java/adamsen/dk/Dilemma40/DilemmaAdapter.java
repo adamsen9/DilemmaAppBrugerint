@@ -143,10 +143,12 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
         Dilemmaer.get(parent).addVotes(index);
         for (int i = 0; i < rg .getChildCount(); i++) {
-            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i]+"");
+            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i]+" - "+options.get(i));
+
         }
         Button vote = (Button) convertView.findViewById(R.id.button);
         vote.setVisibility(View.GONE);
+
     }
 
     @Override
