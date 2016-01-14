@@ -2,88 +2,88 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2-7a415e1c6175e1ad5730791183752420b969dc3f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.2-a12e25887d91cacb07d8959c0548facba83ccf5b.jar" />
-    </item>
-    <item
-        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.12\6ec0bbd3e161a73ed672284b587fd32309a86d7a\tubesock-0.0.12.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\tubesock-0.0.12-154d1d023e7466c4ba63aa5d56d860af055adb72.jar" />
-    </item>
-    <item
-        jar="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-22778ccf006beea167e61c546bb5af30b829ed94.jar" />
-    </item>
-    <item
-        jar="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-2e89f317808554bddb9ff9674b2085d974a0a109.jar" />
-    </item>
-    <item
         jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.5.0\7d0473896b3b10b23a2f9812fec4316dff8afdd\firebase-client-android-2.5.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="07d0473896b3b10b23a2f9812fec4316dff8afdd">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\firebase-client-android-2.5.0-073d7399cf02f2aebd8cbfad6a0c5a649b01cedf.jar" />
-    </item>
-    <item
-        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.5.0\c0af904657634f7ab9cc21e75d80250570033321\firebase-client-jvm-2.5.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="c0af904657634f7ab9cc21e75d80250570033321">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.5.0-7cc6b345da375525afff3296a8bc55b5c1d1eca7.jar" />
-    </item>
-    <item
-        jar="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-0eb9c6c578d24dd157444a03abe124392bd29718.jar" />
-    </item>
-    <item
-        jar="E:\Users\Frederik\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-4d0d8bf1c9d17cba8820503f6c6b3bba0340c139.jar" />
-    </item>
-    <item
-        jar="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-8aa99684ac068d6cf447a3079cbc2b9582d16994.jar" />
-    </item>
-    <item
-        jar="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-42a5de73be003b2c3537fc6f34a14c27294a7895.jar" />
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\firebase-client-android-2.5.0-073d7399cf02f2aebd8cbfad6a0c5a649b01cedf.jar" />
     </item>
     <item
         jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="E:\AndroidProjekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2-30a9456dd49158ed215acb65951eaca201a0be95.jar" />
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2-30a9456dd49158ed215acb65951eaca201a0be95.jar" />
+    </item>
+    <item
+        jar="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-847083e7cfda19921c6ba0159af93bacc46976b7.jar" />
+    </item>
+    <item
+        jar="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-0a015c160dd0629a22d5332770f98d236622efd1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.2-a12e25887d91cacb07d8959c0548facba83ccf5b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.5.0\c0af904657634f7ab9cc21e75d80250570033321\firebase-client-jvm-2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c0af904657634f7ab9cc21e75d80250570033321">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.5.0-7cc6b345da375525afff3296a8bc55b5c1d1eca7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.12\6ec0bbd3e161a73ed672284b587fd32309a86d7a\tubesock-0.0.12.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\tubesock-0.0.12-154d1d023e7466c4ba63aa5d56d860af055adb72.jar" />
+    </item>
+    <item
+        jar="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-9286a88dd4de03d7f07a990c2acf2aabf9431ccd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Frederik\android-sdks\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-ddbf05b15c6d1853b8c553fe56ed5c598215d345.jar" />
+    </item>
+    <item
+        jar="C:\Users\Frederik\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2-7a415e1c6175e1ad5730791183752420b969dc3f.jar" />
+    </item>
+    <item
+        jar="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-ed88152bf70ddc7dbb09bdc6c484693243fcbf8d.jar" />
+    </item>
+    <item
+        jar="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="C:\Android Projekter\DilemmaAppBrugerint\app\build\intermediates\pre-dexed\debug\classes-cd7abfaa48cbdc4e861b202310563471c7304db0.jar" />
     </item>
 
 </items>

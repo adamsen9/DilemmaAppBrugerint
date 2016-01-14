@@ -9,16 +9,16 @@ public class Dilemma {
     String desc;
 
     String[] options;
-    Integer[] votes;
+    int[] votes;
 
     public Dilemma(String titel, String desc, String[] options) {
         this.titel = titel;
         this.desc = desc;
         this.options = options;
-        votes = new Integer[options.length];
+        votes = new int[options.length];
     }
 
-    public Dilemma(String titel, String desc, String[] options, Integer[] votes) {
+    public Dilemma(String titel, String desc, String[] options, int[] votes) {
         this.titel = titel;
         this.desc = desc;
         this.options = options;
@@ -69,7 +69,11 @@ public class Dilemma {
         votes[pos]++;
     }
 
-    public Integer[] getVotes(){
+    public void setVotes(int pos, int votes) {
+        this.votes[pos] = votes;
+    }
+
+    public int[] getVotes(){
         return votes;
     }
 }

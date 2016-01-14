@@ -18,8 +18,9 @@ public class Datalag {
     ArrayList<Dilemma> Dilemmaer;
     Firebase myFirebaseRef;
     DilemmaAdapter adapter;
+    Dilemma tmp;
 
-    public Datalag(Context ctx, final ArrayList Dilemmaer, final DilemmaAdapter adapter) {
+    public Datalag(Context ctx, final ArrayList<Dilemma> Dilemmaer, final DilemmaAdapter adapter) {
         this.Dilemmaer = Dilemmaer;
         this.adapter = adapter;
 
@@ -35,7 +36,11 @@ public class Datalag {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 try {
-                    Dilemmaer.add(dataSnapshot.getValue(Dilemma.class));
+                    tmp = dataSnapshot.getValue(Dilemma.class);
+                    tmp.setId(dataSnapshot.getKey());
+
+                    Dilemmaer.add(tmp);
+
                     adapter.notifyDataSetChanged();
                 } catch (Exception e) {
 
@@ -44,6 +49,22 @@ public class Datalag {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                //s = ID
+
+                tmp = dataSnapshot.getValue(Dilemma.class);
+                tmp.setId(dataSnapshot.getKey());
+
+
+                for(Dilemma d : Dilemmaer) {
+                    if(d.getId().equals(tmp.getId())) {
+                        for(int i = 0; i < d.getVotes().length; i++) {
+                            System.out.println(d.getVotes()[i]);
+                            d.setVotes(i, tmp.getVotes()[i]);
+                            System.out.println(d.getVotes()[i]);
+                        }
+                    }
+                }
+
 
             }
 
@@ -61,37 +82,6 @@ public class Datalag {
             public void onCancelled(FirebaseError firebaseError) {
 
             }
-        });
-
-    }
-
-
-    //Oprettelse af nyt dilemma
-
-
-    // Todo: Implementer opdatering af stemmer
-    public void opdaterStemmer(Dilemma d) {
-
-        Firebase stemme = new Firebase("https://dilemmaapp.firebaseio.com/" + d.getId());
-
-        stemme.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData currentData) {
-                if(currentData.getValue() == null)  {
-                    currentData.setValue(1);
-                } else {
-                    currentData.setValue((Long) currentData.getValue() + 1);
-                }
-
-                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
-            }
-
-            @Override
-            public void onComplete(FirebaseError firebaseError, boolean b, DataSnapshot dataSnapshot) {
-                System.out.println("Ding");
-                //This method will be called once with the results of the transaction
-            }
-
         });
     }
 }
