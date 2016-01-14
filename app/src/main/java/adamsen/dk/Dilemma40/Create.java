@@ -30,6 +30,7 @@ public class Create extends Activity {
     Dilemma dilemma;
     final List<String> dilemma_inner = new ArrayList<String>();
     static Firebase myFirebaseRef;
+    static DatalagController DTC;
 
 
     @Override
@@ -37,6 +38,11 @@ public class Create extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_layout);
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
+
+        //Indlæsning af DTC
+        Intent i = getIntent();
+        DTC = (DatalagController)i.getSerializableExtra("DTC");
+
 
         title = (EditText) findViewById(R.id.editText_titel);
         info = (EditText) findViewById(R.id.editText_beskrivelse);
@@ -90,12 +96,11 @@ public class Create extends Activity {
                     //Toast toast4 = Toast.makeText(getApplicationContext(), "Dilemmaet er lavet", Toast.LENGTH_SHORT);
                     //toast4.show();
                     String[] arr = dilemma_inner.toArray(new String[dilemma_inner.size()]);
-
-                    //Snackbar slut
+                    
                     dilemma = new Dilemma(title.getText().toString(), info.getText().toString(), arr);
 
-
                     newDilemmaDatabase(dilemma);
+
                     Intent returnIntent = new Intent();
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
@@ -148,8 +153,6 @@ public class Create extends Activity {
     }
 
     public static void newDilemmaDatabase(Dilemma d) {
-        myFirebaseRef.push().setValue(d);
-
-
+        DTC.nytDilemmaIDatabase(d);
     }
 }

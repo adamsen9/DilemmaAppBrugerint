@@ -72,4 +72,8 @@ public class Dilemma {
     public int[] getVotes(){
         return votes;
     }
+
+    public void setVotes(int pos, int votes) {
+        this.votes[pos] = votes;
+    }
 }

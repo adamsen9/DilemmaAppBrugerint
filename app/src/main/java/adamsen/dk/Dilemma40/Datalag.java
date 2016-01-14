@@ -17,13 +17,13 @@ public class Datalag {
 
     ArrayList<Dilemma> Dilemmaer;
     Firebase myFirebaseRef;
-    DilemmaAdapter adapter;
+    Firebase voteRef;
     Dilemma tmp;
+    DatalagController DTC;
 
-    public Datalag(Context ctx, final ArrayList<Dilemma> Dilemmaer, final DilemmaAdapter adapter) {
+    public Datalag(Context ctx, final ArrayList<Dilemma> Dilemmaer, final DatalagController DTC) {
         this.Dilemmaer = Dilemmaer;
-        this.adapter = adapter;
-
+        this.DTC = DTC;
         Firebase.setAndroidContext(ctx);
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
 
@@ -41,7 +41,7 @@ public class Datalag {
 
                     Dilemmaer.add(tmp);
 
-                    adapter.notifyDataSetChanged();
+                    DTC.opdaterAdapter();
 
 
 
@@ -84,6 +84,23 @@ public class Datalag {
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
+            }
+        });
+    }
+
+    public  void afgivStemme(Dilemma d, int stemmeNr) {
+        voteRef = new Firebase("https://dilemmaapp.firebaseio.com/" + d.getId() + "/votes/" + stemmeNr);
+        voteRef.runTransaction(new Transaction.Handler() {
+
+            @Override
+            public Transaction.Result doTransaction(MutableData currentData) {
+                currentData.setValue((Long) currentData.getValue() + 1);
+                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
+            }
+
+            @Override
+            public void onComplete(FirebaseError firebaseError, boolean b, DataSnapshot dataSnapshot) {
+                //This method will be called once with the results of the transaction
             }
         });
     }

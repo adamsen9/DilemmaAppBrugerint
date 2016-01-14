@@ -1,7 +1,6 @@
 package adamsen.dk.Dilemma40;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.MutableData;
-import com.firebase.client.Transaction;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,14 +22,13 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
     RadioGroup rg;
+    DatalagController DTC;
 
 
-    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
-
+    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer, DatalagController DTC) {
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
-
-
+        this.DTC = DTC;
     }
 
     @Override
@@ -154,7 +144,7 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         for (int i = 0; i < rg .getChildCount(); i++) {
             ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i] + " - " + options.get(i));
         }
-        opdaterStemmer(Dilemmaer.get(parent),index);
+        afgivSteme(Dilemmaer.get(parent), index);
         Button vote = (Button) convertView.findViewById(R.id.button);
         vote.setVisibility(View.GONE);
     }
@@ -164,19 +154,8 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-    public void opdaterStemmer(Dilemma d, int stemmeNr) {
-        Firebase stemme = new Firebase("https://dilemmaapp.firebaseio.com/" + d.getId() + "/votes/" + stemmeNr);
-        stemme.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData currentData) {
-                currentData.setValue((Long) currentData.getValue() + 1);
-                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
-            }
+    public void afgivSteme(Dilemma d, int stemmeNr) {
+        DTC.afgivStemme(d,stemmeNr);
 
-            @Override
-            public void onComplete(FirebaseError firebaseError, boolean b, DataSnapshot dataSnapshot) {
-                //This method will be called once with the results of the transaction
-            }
-        });
     }
 }

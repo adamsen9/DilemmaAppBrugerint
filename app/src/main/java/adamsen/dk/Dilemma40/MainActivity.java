@@ -16,22 +16,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     ExpandableListView Exp_list;
     DilemmaAdapter adapter;
     FloatingActionButton create;
-    Datalag database;
-
+    DatalagController DTC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Dilemmaer = new ArrayList<>();
-        adapter = new DilemmaAdapter(this, Dilemmaer);
 
-        database = new Datalag(this, Dilemmaer, adapter);
+        adapter = new DilemmaAdapter(this, Dilemmaer,DTC);
+        DTC = new DatalagController(this,Dilemmaer,adapter);
+
         Exp_list = (ExpandableListView) findViewById(R.id.Listen);
         Exp_list.setAdapter(adapter);
         create = (FloatingActionButton) findViewById(R.id.button2);
         create.setOnClickListener(this);
 
+        DatalagController DTC = new DatalagController(this,Dilemmaer,adapter);
 
     }
 
@@ -44,7 +45,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void createClick() {
         //create.setText("hello");
-        startActivityForResult(new Intent("adamsen.dk.Dilemma40.Create"),1);
+        Intent i = new Intent("adamsen.dk.Dilemma40.Create");
+        i.putExtra("DTC",DTC);
+
+        startActivityForResult(i,1);
     }
 
     @Override
@@ -59,5 +63,4 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         }
     }
-
 }
