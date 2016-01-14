@@ -1,19 +1,14 @@
 package adamsen.dk.Dilemma40;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Point;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Context;
@@ -21,7 +16,6 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,11 +87,17 @@ public class Create extends Activity {
 
 
                 else{
-                    Toast toast4 = Toast.makeText(getApplicationContext(), "Dilemmaet er lavet", Toast.LENGTH_SHORT);
-                    toast4.show();
+                    //Toast toast4 = Toast.makeText(getApplicationContext(), "Dilemmaet er lavet", Toast.LENGTH_SHORT);
+                    //toast4.show();
                     String[] arr = dilemma_inner.toArray(new String[dilemma_inner.size()]);
+
+                    //Snackbar slut
                     dilemma = new Dilemma(title.getText().toString(), info.getText().toString(), arr);
+
+
                     newDilemmaDatabase(dilemma);
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK, returnIntent);
                     finish();
 
                 }
@@ -149,5 +149,7 @@ public class Create extends Activity {
 
     public static void newDilemmaDatabase(Dilemma d) {
         myFirebaseRef.push().setValue(d);
+
+
     }
 }

@@ -42,6 +42,9 @@ public class Datalag {
                     Dilemmaer.add(tmp);
 
                     adapter.notifyDataSetChanged();
+
+
+
                 } catch (Exception e) {
 
                 }

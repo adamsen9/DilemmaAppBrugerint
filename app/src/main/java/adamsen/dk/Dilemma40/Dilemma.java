@@ -69,10 +69,6 @@ public class Dilemma {
         votes[pos]++;
     }
 
-    public void setVotes(int pos, int votes) {
-        this.votes[pos] = votes;
-    }
-
     public int[] getVotes(){
         return votes;
     }
