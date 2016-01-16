@@ -18,11 +18,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Frederik on 11/27/2015.
@@ -36,6 +39,9 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     String string;
     ArrayList<String> voted;
     FileOutputStream fos;
+    String filename = "Android.txt";
+    File path=Environment.getExternalStorageDirectory();
+    File textfile = new File(path, filename);
 
 
 
@@ -44,7 +50,11 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
         this.fos = fos;
-
+        try {
+            textfile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -119,8 +129,6 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         TextView child_textview = (TextView) convertView.findViewById(R.id.dilemma_txt);
         child_textview.setText(dilemma_desc);
 
-
-
         //Valgmuligheder indlæses
         options = new ArrayList<String>(Arrays.asList(((Dilemma) getChild(parent, child)).getOptions()));
 
@@ -133,12 +141,24 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
             rg.addView(button);
         }
 
+        try {
+            if(existsalready(Dilemmaer.get(parent).getId())){
+                hide(parent,convertView);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Button vote = (Button) convertView.findViewById(R.id.button);
         final View finalConvertView = convertView;
         vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeMessage(rg, finalConvertView, parent);
+                try {
+                    makeMessage(rg, finalConvertView, parent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -151,28 +171,71 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    private void makeMessage(RadioGroup rg, View convertView, int parent) {
+    private void makeMessage(RadioGroup rg, View convertView, int parent) throws IOException {
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
         Dilemmaer.get(parent).addVotes(index);
+        writetext(Dilemmaer.get(parent).getId());
+        hide(parent, convertView);
+    }
+
+    public void hide(int parent, View convertView){
         for (int i = 0; i < rg .getChildCount(); i++) {
             ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i] + " - " + options.get(i));
-
         }
         Button vote = (Button) convertView.findViewById(R.id.button);
         vote.setVisibility(View.GONE);
-
-        addlist(Dilemmaer.get(parent).getId());
     }
 
 
-
-    public void addlist(String string){
+    public List<String> readFile() throws IOException {
+        //Get the text file
+        File file = new File(path,filename);
+        //Read text from file
+        StringBuilder text = new StringBuilder();
         try {
-            String temp = string + ", ";
-            fos.write(string.getBytes());
-            fos.close();
-        }catch (Exception e){
-         System.out.println(e);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+            }
+            br.close();
+        }
+        catch (IOException e) {
+            //You'll need to add proper error handling here
+            System.out.println(e);
+        }
+        List<String> list = Arrays.asList(text.toString().split(","));
+        return list;
+    }
+
+    public boolean existsalready(String string) throws IOException {
+        List<String> list = readFile();
+        System.out.println(list.size());
+        for(int i = 0; i < list.size(); i++){
+
+            if(list.get(i).equals(null)){
+                System.out.println("Jeg var null");
+                return true;
+            }
+            else if(list.get(i).equals(string)){
+                System.out.println("Jeg var ikke null, men identisk med noget andetZ");
+                return true;
+            }
+        }
+        System.out.println("Jeg fandt ingenting");
+
+        return false;
+    }
+
+    public void writetext(String string) throws IOException {
+        FileWriter f;
+        try {
+            f = new FileWriter(path+"/"+filename, true);
+            f.write(string+",");
+            f.flush();
+            f.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
