@@ -2,6 +2,7 @@ package adamsen.dk.Dilemma40;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,13 +33,17 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     private ArrayList<Dilemma> Dilemmaer;
     ArrayList<String> options;
     RadioGroup rg;
+    String string;
+    ArrayList<String> voted;
+    FileOutputStream fos;
 
 
-    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer) {
+
+    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer, FileOutputStream fos) {
 
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
-
+        this.fos = fos;
 
     }
 
@@ -143,16 +155,33 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
         Dilemmaer.get(parent).addVotes(index);
         for (int i = 0; i < rg .getChildCount(); i++) {
-            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i]+" - "+options.get(i));
+            ((RadioButton) rg.getChildAt(i)).setText(Dilemmaer.get(parent).getVotes()[i] + " - " + options.get(i));
 
         }
         Button vote = (Button) convertView.findViewById(R.id.button);
         vote.setVisibility(View.GONE);
 
+        addlist(Dilemmaer.get(parent).getId());
+    }
+
+
+
+    public void addlist(String string){
+        try {
+            String temp = string + ", ";
+            fos.write(string.getBytes());
+            fos.close();
+        }catch (Exception e){
+         System.out.println(e);
+        }
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
+
+
+
 }
