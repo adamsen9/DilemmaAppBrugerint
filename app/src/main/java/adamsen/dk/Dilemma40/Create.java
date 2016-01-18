@@ -16,8 +16,12 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import adamsen.dk.Dilemma40.Controller.DatalagController;
+import adamsen.dk.Dilemma40.Entity.Dilemma;
 
 public class Create extends Activity {
 
@@ -39,8 +43,11 @@ public class Create extends Activity {
         setContentView(R.layout.create_layout);
         myFirebaseRef = new Firebase("https://dilemmaapp.firebaseio.com/");
 
-        //Indlæsning af DTC
-        DTC = (DatalagController) getIntent().getSerializableExtra("DatalagController");
+        //Todo indlæsning af DTC er ikke korrekt
+        Intent i = getIntent();
+        DTC = (DatalagController) i.getParcelableExtra("DatalagController");
+        System.out.println(DTC + " 42");
+
 
 
         title = (EditText) findViewById(R.id.editText_titel);
@@ -98,9 +105,8 @@ public class Create extends Activity {
 
                     dilemma = new Dilemma(title.getText().toString(), info.getText().toString(), arr);
 
-                    newDilemmaDatabase(dilemma);
-
                     Intent returnIntent = new Intent();
+                    returnIntent.putExtra("oprettetDilemma",dilemma);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
 
@@ -149,9 +155,5 @@ public class Create extends Activity {
         }
         Toast toast5 = Toast.makeText(getApplicationContext(), "kinda fail", Toast.LENGTH_SHORT);
         toast5.show();
-    }
-
-    public static void newDilemmaDatabase(Dilemma d) {
-        DTC.nytDilemmaIDatabase(d);
     }
 }

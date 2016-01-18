@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        <activity android:name="adamsen.dk.Dilemma40.MainActivity" >
+        <activity android:name="adamsen.dk.Dilemma40.Boundary.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

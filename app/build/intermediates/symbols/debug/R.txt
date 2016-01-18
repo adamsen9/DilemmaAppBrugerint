@@ -560,9 +560,8 @@ int drawable ic_clear_white_24dp 0x7f02004b
 int drawable ic_done_all_white_24dp 0x7f02004c
 int drawable ic_done_white_24dp 0x7f02004d
 int drawable ic_send_white_18dp 0x7f02004e
-int drawable notification_template_icon_bg 0x7f020051
+int drawable notification_template_icon_bg 0x7f020050
 int drawable onscvsh 0x7f02004f
-int drawable splash 0x7f020050
 int id Listen 0x7f0c006b
 int id Vertscroll 0x7f0c0073
 int id action0 0x7f0c0082
