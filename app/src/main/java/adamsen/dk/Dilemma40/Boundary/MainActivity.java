@@ -86,7 +86,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
         //create.setText("hello");
         if(nInfo != null && nInfo.isConnected()){
         }else{
-            Toast toast = Toast.makeText(this, "Du har ikke internetforbindelse, og folk vil ikke kunne se din stemme før denne blive oprettet igen", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Du har ikke internetforbindelse, og folk vil ikke kunne se dit opslag før denne blive oprettet igen", Toast.LENGTH_SHORT);
             toast.show();
         }
         Intent i = new Intent(MainActivity.this,Create.class);
