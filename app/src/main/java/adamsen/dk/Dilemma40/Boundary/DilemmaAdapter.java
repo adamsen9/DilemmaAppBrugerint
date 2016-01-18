@@ -1,6 +1,8 @@
 package adamsen.dk.Dilemma40.Boundary;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,10 +45,13 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     String filename = "Android.txt";
     File path=Environment.getExternalStorageDirectory();
     File textfile = new File(path, filename);
+    ConnectivityManager cManager;
+    NetworkInfo nInfo;
 
 
 
-    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer, FileOutputStream fos,DatalagController DTC) {
+
+    public DilemmaAdapter(Context ctx, ArrayList<Dilemma> Dilemmaer, FileOutputStream fos,DatalagController DTC, ConnectivityManager cManager, NetworkInfo nInfo) {
         this.ctx = ctx;
         this.Dilemmaer = Dilemmaer;
         this.fos = fos;
@@ -55,6 +61,8 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
             e.printStackTrace();
         }
         this.DTC = DTC;
+        this.cManager = cManager;
+        this.nInfo = nInfo;
     }
 
     @Override
@@ -174,6 +182,13 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
     }
 
     private void makeMessage(RadioGroup rg, View convertView, int parent) throws IOException {
+
+        if(nInfo != null && nInfo.isConnected()){
+        }else{
+            Toast toast = Toast.makeText(ctx, "Du har ikke internetforbindelse, og folk vil ikke kunne se din stemme før denne blive oprettet igen", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
 
 

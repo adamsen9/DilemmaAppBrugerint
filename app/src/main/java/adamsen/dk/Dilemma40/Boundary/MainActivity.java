@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
     public String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aaG40";
     NetworkInfo nInfo;
     ConnectivityManager cManager;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Firebase.setAndroidContext(this);
