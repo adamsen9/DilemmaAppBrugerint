@@ -3,12 +3,15 @@ package adamsen.dk.Dilemma40.Boundary;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
@@ -40,17 +43,17 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
     String FILENAME = "voted_dilemmas";
     FileOutputStream fos;
     public String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aaG40";
-
-
-
-
-
+    NetworkInfo nInfo;
+    ConnectivityManager cManager;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Firebase.setAndroidContext(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        nInfo = cManager.getActiveNetworkInfo();
 
         try {
             fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -61,7 +64,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
         Dilemmaer = new ArrayList<>();
 
 
-        adapter = new DilemmaAdapter(this, Dilemmaer,fos,DTC);
+        adapter = new DilemmaAdapter(this, Dilemmaer,fos,DTC, cManager, nInfo);
         DTC = new DatalagController(this,Dilemmaer,adapter);
         adapter.setDTC(DTC);
         
@@ -69,103 +72,6 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
         Exp_list.setAdapter(adapter);
         create = (FloatingActionButton) findViewById(R.id.button2);
         create.setOnClickListener(this);
-
-
-    }
-
-    public void buttonSave(View view){
-        File file = new File(path + "/savedfile.txt");
-        String[] saveText = String.valueOf("se mig her hallo").split(System.getProperty("line.separetor"));
-        Save(file, saveText);
-    }
-
-    public void buttonLoad(View view){
-        File file = new File(path+"/savedFile.txt");
-        String[] loadText = Load(file);
-
-        String final_string = "";
-
-        for (int i=0; i>loadText.length;i++){
-            final_string = loadText[i] + System.getProperty("line.separator");
-        }
-    }
-
-
-
-    public static void Save(File file, String[] data){
-        FileOutputStream fos = null;
-        try
-        {
-            fos = new FileOutputStream(file);
-        }
-        catch (FileNotFoundException e) {e.printStackTrace();}
-        try
-        {
-            try
-            {
-                for (int i = 0; i<data.length; i++)
-                {
-                    fos.write(data[i].getBytes());
-                    if (i < data.length-1)
-                    {
-                        fos.write("\n".getBytes());
-                    }
-                }
-            }
-            catch (IOException e) {e.printStackTrace();}
-        }
-        finally
-        {
-            try
-            {
-                fos.close();
-            }
-            catch (IOException e) {e.printStackTrace();}
-        }
-    }
-
-    public static String[] Load(File file)
-    {
-        FileInputStream fis = null;
-        try
-        {
-            fis = new FileInputStream(file);
-        }
-        catch (FileNotFoundException e) {e.printStackTrace();}
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader br = new BufferedReader(isr);
-
-        String test;
-        int anzahl=0;
-        try
-        {
-            while ((test=br.readLine()) != null)
-            {
-                anzahl++;
-            }
-        }
-        catch (IOException e) {e.printStackTrace();}
-
-        try
-        {
-            fis.getChannel().position(0);
-        }
-        catch (IOException e) {e.printStackTrace();}
-
-        String[] array = new String[anzahl];
-
-        String line;
-        int i = 0;
-        try
-        {
-            while((line=br.readLine())!=null)
-            {
-                array[i] = line;
-                i++;
-            }
-        }
-        catch (IOException e) {e.printStackTrace();}
-        return array;
     }
 
     @Override
@@ -178,6 +84,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Seri
 
     private void createClick() {
         //create.setText("hello");
+        if(nInfo != null && nInfo.isConnected()){
+        }else{
+            Toast toast = Toast.makeText(this, "Du har ikke internetforbindelse, og folk vil ikke kunne se din stemme før denne blive oprettet igen", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         Intent i = new Intent(MainActivity.this,Create.class);
         startActivityForResult(i,1);
     }
