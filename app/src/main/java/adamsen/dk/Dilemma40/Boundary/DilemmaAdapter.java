@@ -190,14 +190,14 @@ public class DilemmaAdapter extends BaseExpandableListAdapter {
         }
 
         int index = rg.indexOfChild(convertView.findViewById(rg.getCheckedRadioButtonId()));
+        if(index != -1) {
+            Dilemmaer.get(parent).addVotes(index);
+            afgivSteme(Dilemmaer.get(parent), index);
 
 
-        Dilemmaer.get(parent).addVotes(index);
-        afgivSteme(Dilemmaer.get(parent), index);
-
-
-        writetext(Dilemmaer.get(parent).getId());
-        hide(parent, convertView);
+            writetext(Dilemmaer.get(parent).getId());
+            hide(parent, convertView);
+        }
     }
 
     public void hide(int parent, View convertView){
